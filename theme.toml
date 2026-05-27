@@ -1,0 +1,12 @@
+name = "plural-hugo-newspaper-layout"
+license = "AGPL-3.0-or-later"
+licenselink = "https://github.com/plural-activism/plural-hugo-newspaper-layout/blob/main/LICENSE"
+description = "A newspaper-style Hugo theme focused on accessibility and performance."
+homepage = "https://github.com/plural-activism/plural-hugo-newspaper-layout"
+tags = ["blog", "newspaper", "accessible", "responsive"]
+features = ["tags", "categories", "responsive"]
+min_version = "0.139.4"
+
+[author]
+  name = "Plural Activism"
+  homepage = "https://github.com/plural-activism"
