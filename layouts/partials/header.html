@@ -1,11 +1,11 @@
 <header>
-  <p><a href="{{ "/" | relLangURL }}">{{ .Site.Params.header.logoText | default .Site.Title }}</a></p>
+  <div><a href="{{ "/" | relLangURL }}">{{ .Site.Params.header.logoText | default .Site.Title }}</a></div>
   {{ partial "nav.html" . }}
   {{ with .Site.Params.header.fixedLinks }}
     <nav aria-label="Header fixed links">
       <ul>
         {{- range . -}}
-          <li><a href="{{ .url | safeURL }}">{{ .name }}</a></li>
+          <li><a href="{{ (.URL | default .url) | safeURL }}">{{ .Name | default .name }}</a></li>
         {{- end -}}
       </ul>
     </nav>

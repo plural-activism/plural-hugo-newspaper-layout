@@ -3,7 +3,7 @@
     <nav aria-label="Footer fixed links">
       <ul>
         {{- range . -}}
-          <li><a href="{{ .url | safeURL }}">{{ .name }}</a></li>
+          <li><a href="{{ (.URL | default .url) | safeURL }}">{{ .Name | default .name }}</a></li>
         {{- end -}}
       </ul>
     </nav>
