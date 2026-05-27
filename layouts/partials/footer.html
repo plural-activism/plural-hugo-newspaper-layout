@@ -12,7 +12,8 @@
     <nav aria-label="Footer menu">
       <ul>
         {{- range . -}}
-          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{- $isCurrent := and .Page (eq .Page.RelPermalink $.RelPermalink) -}}
+          <li><a href="{{ .URL }}"{{ if $isCurrent }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
         {{- end -}}
       </ul>
     </nav>

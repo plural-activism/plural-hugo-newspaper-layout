@@ -1,8 +1,9 @@
 <nav aria-label="Primary">
   <ul>
     {{- range .Site.Menus.main.ByWeight -}}
+      {{- $isCurrent := and .Page (eq .Page.RelPermalink $.RelPermalink) -}}
       <li>
-        <a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
+        <a href="{{ .URL }}"{{ if $isCurrent }} aria-current="page"{{ end }}>{{ .Name }}</a>
       </li>
     {{- end -}}
   </ul>
