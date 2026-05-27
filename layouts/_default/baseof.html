@@ -36,7 +36,7 @@
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     {{ partial "header.html" . }}
-    <main id="main-content" tabindex="-1">
+    <main id="main-content">
       {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}
