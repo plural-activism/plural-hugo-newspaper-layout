@@ -6,17 +6,29 @@
     <title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}{{ end }}</title>
     <style>
       .skip-link {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
         left: 0;
+        overflow: hidden;
         position: absolute;
-        top: -9999px;
+        top: 0;
+        white-space: nowrap;
+        width: 1px;
       }
 
       .skip-link:focus {
         background: #fff;
         border: 2px solid currentColor;
+        clip: auto;
+        clip-path: none;
+        height: auto;
         left: 1rem;
+        overflow: visible;
         padding: 0.5rem 0.75rem;
         top: 1rem;
+        white-space: normal;
+        width: auto;
         z-index: 1000;
       }
     </style>
