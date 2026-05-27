@@ -2,6 +2,14 @@
 
 This is an open-source hugo theme for blogs and informational websites. It is designed to be simple, clean, and easy to use. It is also responsive, meaning it will look great on all devices. The theme is design from the ground up to be accessiable, fast and lightweight. It uses minimal JavaScript and CSS, and it is optimized for performance. It follows the [treblesand colorscheme](https://treblesand.dreamwidth.org/). The mainlayout is a newspaper-style layout, similar to [Hugo Xmag](https://www.gohugothemes.com/theme/yihui-hugo-xmag/), with a sidebar for navigation and a main content area for articles. The theme also includes support for tags and categories, making it easy to organize your content.
 
+## License
+
+This theme is licensed under the GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later). See [`LICENSE`](LICENSE) for the full text.
+
+## Contributing
+
+Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request.
+
 ## Features
 
 - **General**
