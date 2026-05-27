@@ -21,12 +21,12 @@ theme = "plural-hugo-newspaper-layout"
   showSearch = false
 
 [[params.footer.fixedLinks]]
-  name = "Accessibility statement"
-  url = "https://example.org/accessibility"
+  Name = "Accessibility statement"
+  URL = "https://example.org/accessibility"
 
 [[params.footer.fixedLinks]]
-  name = "Contact"
-  url = "https://example.org/contact"
+  Name = "Contact"
+  URL = "https://example.org/contact"
 
 [params.widgets]
   sidebar = ["toc", "social_links", "recent_posts", "category_posts", "fixed_links"]

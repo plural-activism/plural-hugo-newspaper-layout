@@ -5,7 +5,7 @@
     <nav aria-label="Header fixed links">
       <ul>
         {{- range . -}}
-          <li><a href="{{ (.URL | default .url) | safeURL }}">{{ .Name | default .name }}</a></li>
+          <li><a href="{{ .URL | safeURL }}">{{ .Name }}</a></li>
         {{- end -}}
       </ul>
     </nav>
