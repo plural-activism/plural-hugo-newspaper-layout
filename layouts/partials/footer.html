@@ -12,7 +12,7 @@
     <nav aria-label="Footer menu">
       <ul>
         {{- range . -}}
-          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          <li><a href="{{ .URL | safeURL }}">{{ .Name }}</a></li>
         {{- end -}}
       </ul>
     </nav>
