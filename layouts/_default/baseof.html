@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="{{ .Site.Language.LanguageCode | default .Site.LanguageCode | default `en` }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}{{ end }}</title>
+    <style>
+      .skip-link {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        white-space: nowrap;
+        width: 1px;
+      }
+
+      .skip-link:focus {
+        background: #fff;
+        border: 2px solid currentColor;
+        clip: auto;
+        clip-path: none;
+        height: auto;
+        left: 1rem;
+        overflow: visible;
+        padding: 0.5rem 0.75rem;
+        top: 1rem;
+        white-space: normal;
+        width: auto;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    {{ partial "header.html" . }}
+    <main id="main-content" tabindex="-1">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+  </body>
+</html>
