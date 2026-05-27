@@ -1,0 +1,13 @@
+<header>
+  <p><a href="{{ "/" | relLangURL }}">{{ .Site.Params.header.logoText | default .Site.Title }}</a></p>
+  {{ partial "nav.html" . }}
+  {{ with .Site.Params.header.fixedLinks }}
+    <nav aria-label="Header fixed links">
+      <ul>
+        {{- range . -}}
+          <li><a href="{{ .url | safeURL }}">{{ .name }}</a></li>
+        {{- end -}}
+      </ul>
+    </nav>
+  {{ end }}
+</header>

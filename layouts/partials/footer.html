@@ -1,0 +1,20 @@
+<footer>
+  {{ with .Site.Params.footer.fixedLinks }}
+    <nav aria-label="Footer fixed links">
+      <ul>
+        {{- range . -}}
+          <li><a href="{{ .url | safeURL }}">{{ .name }}</a></li>
+        {{- end -}}
+      </ul>
+    </nav>
+  {{ end }}
+  {{ with .Site.Menus.footer.ByWeight }}
+    <nav aria-label="Footer menu">
+      <ul>
+        {{- range . -}}
+          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{- end -}}
+      </ul>
+    </nav>
+  {{ end }}
+</footer>
