@@ -1,0 +1,23 @@
+{{- /* Post meta: description, reading time, tags */ -}}
+{{- $params := .Site.Params.posts -}}
+<div class="post-meta">
+  {{- with .Description }}
+    <p class="post-description">{{ . }}</p>
+  {{- end }}
+  <dl class="post-details">
+    <dt class="visually-hidden">Published</dt>
+    <dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time></dd>
+    {{- if $params.showReadingTime }}
+      <dt class="visually-hidden">Reading time</dt>
+      <dd class="reading-time">{{ .ReadingTime }} min read</dd>
+    {{- end }}
+    {{- if and $params.showTags .Params.tags }}
+      <dt class="visually-hidden">Tags</dt>
+      <dd class="post-tags">
+        {{- range .GetTerms "tags" }}
+          <a href="{{ .RelPermalink }}" class="tag">{{ .LinkTitle }}</a>
+        {{- end }}
+      </dd>
+    {{- end }}
+  </dl>
+</div>

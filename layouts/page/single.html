@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <article class="page" aria-labelledby="page-title">
+    <header class="page-header">
+      <h1 id="page-title">{{ .Title }}</h1>
+      {{- with .Description }}
+        <p class="page-description">{{ . }}</p>
+      {{- end }}
+      <p class="page-date">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+      </p>
+    </header>
+
+    <div class="page-content">
+      {{ .Content }}
+    </div>
+  </article>
+{{ end }}
