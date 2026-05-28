@@ -1,0 +1,28 @@
+{{ define "main" }}
+  <article class="easy-post" aria-labelledby="easy-post-title">
+    <header class="easy-post__header">
+      {{ partial "easy-badge.html" . }}
+      <h1 id="easy-post-title">{{ .Title }}</h1>
+      {{- with .Description }}
+        <p class="easy-post__description">{{ . }}</p>
+      {{- end }}
+      <p class="easy-post__date">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+      </p>
+    </header>
+
+    <div class="easy-post__content">
+      {{ .Content }}
+    </div>
+
+    {{- if and .Site.Params.posts.showTags .Params.tags }}
+      <footer class="easy-post__footer">
+        <ul class="post-tags" aria-label="Tags">
+          {{- range .GetTerms "tags" }}
+            <li><a href="{{ .RelPermalink }}" class="tag">{{ .LinkTitle }}</a></li>
+          {{- end }}
+        </ul>
+      </footer>
+    {{- end }}
+  </article>
+{{ end }}

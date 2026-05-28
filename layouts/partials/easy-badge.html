@@ -1,0 +1,6 @@
+{{- /* Easy-language badge.
+       Renders when params.easyLanguage.showBadge is true.
+       Pass the page context (.) */ -}}
+{{- if .Site.Params.easyLanguage.showBadge }}
+  <span class="easy-badge" aria-label="Easy language">Easy language</span>
+{{- end }}
