@@ -1,0 +1,21 @@
+{{- /* Sidebar: renders widgets in the order defined by params.widgets.sidebar.
+       Allowed widget IDs: toc, social_links, recent_posts, category_posts, fixed_links.
+       Pass the page context (.) so each widget has full access to the current page. */ -}}
+{{- $widgets := .Site.Params.widgets.sidebar }}
+{{- with $widgets }}
+  <aside class="sidebar" aria-label="Sidebar">
+    {{- range $widgets }}
+      {{- if eq . "toc" }}
+        {{ partial "widgets/toc.html" $ }}
+      {{- else if eq . "social_links" }}
+        {{ partial "widgets/social-links.html" $ }}
+      {{- else if eq . "recent_posts" }}
+        {{ partial "widgets/recent-posts.html" $ }}
+      {{- else if eq . "category_posts" }}
+        {{ partial "widgets/category-posts.html" $ }}
+      {{- else if eq . "fixed_links" }}
+        {{ partial "widgets/fixed-links.html" $ }}
+      {{- end }}
+    {{- end }}
+  </aside>
+{{- end }}

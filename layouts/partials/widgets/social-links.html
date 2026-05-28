@@ -1,0 +1,16 @@
+{{- /* Widget: Social links.
+       Renders profile links from params.social.links. */ -}}
+{{- with .Site.Params.social.links }}
+  <aside class="widget widget--social-links" aria-labelledby="social-links-heading">
+    <h2 id="social-links-heading" class="widget__title">Follow us</h2>
+    <ul class="widget__list">
+      {{- range . }}
+        <li class="widget__item">
+          <a href="{{ .url | safeURL }}" class="widget__link" rel="noopener noreferrer">
+            {{- .name -}}
+          </a>
+        </li>
+      {{- end }}
+    </ul>
+  </aside>
+{{- end }}
