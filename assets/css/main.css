@@ -115,7 +115,7 @@
       Activated by [data-scheme="high-contrast"] or prefers-contrast: more
    -------------------------------------------------------------------------- */
 @media (prefers-contrast: more) {
-  :root {
+  :root:not([data-scheme]) {
     --color-bg:          #ffffff;
     --color-bg-alt:      #f0f0f0;
     --color-surface:     #ffffff;
