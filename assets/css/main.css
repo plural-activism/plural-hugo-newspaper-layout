@@ -68,7 +68,7 @@
    2. Dark scheme
    -------------------------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-scheme]) {
     --color-bg:          #1a1814;
     --color-bg-alt:      #242018;
     --color-surface:     #2a261f;
