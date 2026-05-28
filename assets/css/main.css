@@ -1,0 +1,851 @@
+/* ==========================================================================
+   Plural Newspaper – core stylesheet
+   Three color schemes: light (default), dark, high-contrast.
+   Schemes activate via:
+     1. prefers-color-scheme media query (light/dark auto)
+     2. [data-scheme="dark"] on <html> (explicit override)
+     3. [data-scheme="high-contrast"] on <html>
+   No JavaScript required for initial rendering.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens – light scheme (default)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Typography */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+    monospace;
+  --font-size-base: 1rem;        /* 16 px */
+  --font-size-sm:   0.875rem;
+  --font-size-lg:   1.125rem;
+  --font-size-xl:   1.5rem;
+  --font-size-2xl:  2rem;
+  --line-height-body: 1.6;
+  --line-height-heading: 1.2;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Layout */
+  --content-width: 72rem;   /* ~1152 px */
+  --sidebar-width: 18rem;
+  --gap: var(--space-8);
+
+  /* Light scheme colors (treblesand-inspired) */
+  --color-bg:          #f5f1eb;
+  --color-bg-alt:      #ede8e0;
+  --color-surface:     #ffffff;
+  --color-border:      #ccc5b9;
+  --color-text:        #1a1814;
+  --color-text-muted:  #5a534a;
+  --color-heading:     #1a1814;
+  --color-link:        #7b3f00;
+  --color-link-hover:  #4a2400;
+  --color-link-visited:#5c3d6e;
+  --color-accent:      #7b3f00;
+  --color-focus-ring:  #005fcc;
+  --color-tag-bg:      #ede8e0;
+  --color-tag-text:    #1a1814;
+  --color-tag-border:  #ccc5b9;
+  --color-card-bg:     #ffffff;
+  --color-card-border: #ccc5b9;
+
+  /* Focus ring */
+  --focus-ring: 3px solid var(--color-focus-ring);
+  --focus-ring-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Dark scheme
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme]) {
+    --color-bg:          #1a1814;
+    --color-bg-alt:      #242018;
+    --color-surface:     #2a261f;
+    --color-border:      #4a4540;
+    --color-text:        #ede8e0;
+    --color-text-muted:  #a09890;
+    --color-heading:     #f5f1eb;
+    --color-link:        #e8a87c;
+    --color-link-hover:  #f5c9a0;
+    --color-link-visited:#c4a0d8;
+    --color-accent:      #e8a87c;
+    --color-focus-ring:  #7ab8ff;
+    --color-tag-bg:      #2a261f;
+    --color-tag-text:    #ede8e0;
+    --color-tag-border:  #4a4540;
+    --color-card-bg:     #2a261f;
+    --color-card-border: #4a4540;
+  }
+}
+
+/* Explicit dark override (data-scheme attribute, no JS needed at load) */
+[data-scheme="dark"] {
+  --color-bg:          #1a1814;
+  --color-bg-alt:      #242018;
+  --color-surface:     #2a261f;
+  --color-border:      #4a4540;
+  --color-text:        #ede8e0;
+  --color-text-muted:  #a09890;
+  --color-heading:     #f5f1eb;
+  --color-link:        #e8a87c;
+  --color-link-hover:  #f5c9a0;
+  --color-link-visited:#c4a0d8;
+  --color-accent:      #e8a87c;
+  --color-focus-ring:  #7ab8ff;
+  --color-tag-bg:      #2a261f;
+  --color-tag-text:    #ede8e0;
+  --color-tag-border:  #4a4540;
+  --color-card-bg:     #2a261f;
+  --color-card-border: #4a4540;
+}
+
+/* --------------------------------------------------------------------------
+   3. High-contrast scheme
+      Activated by [data-scheme="high-contrast"] or prefers-contrast: more
+   -------------------------------------------------------------------------- */
+@media (prefers-contrast: more) {
+  :root:not([data-scheme]) {
+    --color-bg:          #ffffff;
+    --color-bg-alt:      #f0f0f0;
+    --color-surface:     #ffffff;
+    --color-border:      #000000;
+    --color-text:        #000000;
+    --color-text-muted:  #1a1a1a;
+    --color-heading:     #000000;
+    --color-link:        #00008b;
+    --color-link-hover:  #000060;
+    --color-link-visited:#551a8b;
+    --color-accent:      #00008b;
+    --color-focus-ring:  #000000;
+    --color-tag-bg:      #000000;
+    --color-tag-text:    #ffffff;
+    --color-tag-border:  #000000;
+    --color-card-bg:     #ffffff;
+    --color-card-border: #000000;
+    --focus-ring: 3px solid #000000;
+  }
+}
+
+[data-scheme="high-contrast"] {
+  --color-bg:          #ffffff;
+  --color-bg-alt:      #f0f0f0;
+  --color-surface:     #ffffff;
+  --color-border:      #000000;
+  --color-text:        #000000;
+  --color-text-muted:  #1a1a1a;
+  --color-heading:     #000000;
+  --color-link:        #00008b;
+  --color-link-hover:  #000060;
+  --color-link-visited:#551a8b;
+  --color-accent:      #00008b;
+  --color-focus-ring:  #000000;
+  --color-tag-bg:      #000000;
+  --color-tag-text:    #ffffff;
+  --color-tag-border:  #000000;
+  --color-card-bg:     #ffffff;
+  --color-card-border: #000000;
+  --focus-ring: 3px solid #000000;
+}
+
+/* --------------------------------------------------------------------------
+   4. Reset and base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-body);
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Focus indicators – visible in all schemes
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 2px;
+}
+
+/* Remove default outline when :focus-visible is supported */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   6. Typography
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-heading);
+  font-family: var(--font-body);
+  line-height: var(--line-height-heading);
+  margin-block-start: var(--space-8);
+  margin-block-end: var(--space-4);
+}
+
+h1 { font-size: var(--font-size-2xl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+h4, h5, h6 { font-size: var(--font-size-base); }
+
+p {
+  margin-block-start: 0;
+  margin-block-end: var(--space-4);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+a:visited {
+  color: var(--color-link-visited);
+}
+
+ul, ol {
+  padding-inline-start: var(--space-6);
+  margin-block-end: var(--space-4);
+}
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+}
+
+pre {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow-x: auto;
+  padding: var(--space-4);
+  margin-block-end: var(--space-4);
+}
+
+blockquote {
+  border-inline-start: 4px solid var(--color-accent);
+  color: var(--color-text-muted);
+  margin-inline: 0;
+  padding-inline-start: var(--space-4);
+}
+
+hr {
+  border: none;
+  border-block-start: 1px solid var(--color-border);
+  margin-block: var(--space-8);
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   7. Skip link (moves inline styles out of baseof.html)
+   -------------------------------------------------------------------------- */
+.skip-link {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skip-link:focus {
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-focus-ring);
+  clip: auto;
+  clip-path: none;
+  color: var(--color-text);
+  height: auto;
+  left: var(--space-4);
+  overflow: visible;
+  padding: var(--space-2) var(--space-3);
+  top: var(--space-4);
+  white-space: normal;
+  width: auto;
+  z-index: 1000;
+}
+
+/* Visually hidden utility (used for screen-reader-only labels) */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Page shell: header / nav / footer
+   -------------------------------------------------------------------------- */
+header {
+  background-color: var(--color-bg-alt);
+  border-block-end: 1px solid var(--color-border);
+  padding-block: var(--space-4);
+}
+
+header > * {
+  margin-inline: auto;
+  max-width: var(--content-width);
+  padding-inline: var(--space-4);
+}
+
+.site-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-title:visited {
+  color: var(--color-heading);
+}
+
+/* Primary nav */
+nav[aria-label="Primary"] ul,
+nav[aria-label="Primary"] ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav[aria-label="Primary"] a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav[aria-label="Primary"] a:hover {
+  text-decoration: underline;
+}
+
+nav[aria-label="Primary"] [aria-current="page"] {
+  border-block-end: 2px solid var(--color-accent);
+}
+
+footer {
+  background-color: var(--color-bg-alt);
+  border-block-start: 1px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  margin-block-start: var(--space-16);
+  padding-block: var(--space-6);
+}
+
+footer > * {
+  margin-inline: auto;
+  max-width: var(--content-width);
+  padding-inline: var(--space-4);
+}
+
+footer nav ul,
+footer nav ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   9. Main content wrapper
+   -------------------------------------------------------------------------- */
+main {
+  margin-inline: auto;
+  max-width: var(--content-width);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-8);
+}
+
+/* --------------------------------------------------------------------------
+   10. Two-column layout: content + sidebar
+   -------------------------------------------------------------------------- */
+.single-layout,
+.list-layout {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 60rem) {
+  .single-layout,
+  .list-layout {
+    grid-template-columns: 1fr var(--sidebar-width);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. Post / article
+   -------------------------------------------------------------------------- */
+.post {
+  min-width: 0; /* prevent grid blowout */
+}
+
+.post-header {
+  border-block-end: 1px solid var(--color-border);
+  margin-block-end: var(--space-6);
+  padding-block-end: var(--space-4);
+}
+
+.post-header h1 {
+  margin-block-start: 0;
+}
+
+/* Post meta */
+.post-meta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.post-description {
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  font-style: italic;
+  margin-block-end: var(--space-3);
+}
+
+.post-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+}
+
+.post-details dt,
+.post-details dd {
+  margin: 0;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. Tags
+   -------------------------------------------------------------------------- */
+.tag {
+  background-color: var(--color-tag-bg);
+  border: 1px solid var(--color-tag-border);
+  border-radius: 3px;
+  color: var(--color-tag-text);
+  font-size: var(--font-size-sm);
+  padding: var(--space-1) var(--space-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tag:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.tag:visited {
+  color: var(--color-tag-text);
+}
+
+/* --------------------------------------------------------------------------
+   13. Glossary
+   -------------------------------------------------------------------------- */
+.post-glossary {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  margin-block-start: var(--space-8);
+  padding: var(--space-4) var(--space-6);
+}
+
+.post-glossary h2 {
+  margin-block-start: 0;
+}
+
+.post-glossary dl {
+  margin: 0;
+}
+
+.post-glossary dt {
+  font-weight: 700;
+  margin-block-start: var(--space-3);
+}
+
+.post-glossary dd {
+  margin-inline-start: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   14. Share links
+   -------------------------------------------------------------------------- */
+.post-share {
+  margin-block-start: var(--space-8);
+}
+
+.share-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.share-link {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  font-size: var(--font-size-sm);
+  padding: var(--space-2) var(--space-3);
+  text-decoration: none;
+}
+
+.share-link:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* --------------------------------------------------------------------------
+   15. Post cards (list / grid / masonry)
+   -------------------------------------------------------------------------- */
+.posts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* -- list variant --------------------------------------------------------- */
+.posts-list--list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.posts-list--list .post-card {
+  border-block-end: 1px solid var(--color-border);
+  padding-block-end: var(--space-6);
+}
+
+.posts-list--list .posts-list__item:last-child .post-card {
+  border-block-end: none;
+}
+
+/* -- grid variant --------------------------------------------------------- */
+.posts-list--grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 40rem) {
+  .posts-list--grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 60rem) {
+  .posts-list--grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* -- masonry variant (CSS Grid pseudo-masonry) ---------------------------- */
+/* Note: items flow top-to-bottom within columns, not in reading order.
+   This is a known limitation of the CSS-only approach. */
+.posts-list--masonry {
+  column-count: 1;
+  column-gap: var(--gap);
+}
+
+@media (min-width: 40rem) {
+  .posts-list--masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 60rem) {
+  .posts-list--masonry {
+    column-count: 3;
+  }
+}
+
+.posts-list--masonry .posts-list__item {
+  break-inside: avoid;
+  margin-block-end: var(--gap);
+}
+
+/* -- card ----------------------------------------------------------------- */
+.post-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  height: 100%;
+  padding: var(--space-4);
+}
+
+.post-card__title {
+  font-size: var(--font-size-lg);
+  margin: 0;
+}
+
+.post-card__title a {
+  text-decoration: none;
+}
+
+.post-card__title a:hover {
+  text-decoration: underline;
+}
+
+.post-card__description {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.post-card__meta {
+  color: var(--color-text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--font-size-sm);
+  gap: var(--space-2) var(--space-4);
+  margin-block-start: auto;
+  padding-block-start: var(--space-2);
+}
+
+.post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   16. Pagination
+   -------------------------------------------------------------------------- */
+.pagination {
+  margin-block-start: var(--space-8);
+}
+
+.pagination__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination__link {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  display: inline-block;
+  min-width: 2.25rem;
+  padding: var(--space-2) var(--space-3);
+  text-align: center;
+  text-decoration: none;
+}
+
+.pagination__link:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.pagination__link--current {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   17. List / taxonomy page headers
+   -------------------------------------------------------------------------- */
+.list-header {
+  border-block-end: 1px solid var(--color-border);
+  margin-block-end: var(--space-6);
+  padding-block-end: var(--space-4);
+}
+
+.list-header h1 {
+  margin-block-start: 0;
+}
+
+/* Taxonomy terms */
+.terms-list {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  list-style: none;
+  padding: 0;
+}
+
+.terms-list__link {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+}
+
+.terms-list__count {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* --------------------------------------------------------------------------
+   18. Sidebar and widgets
+   -------------------------------------------------------------------------- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.widget {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: var(--space-4);
+}
+
+.widget__title {
+  border-block-end: 1px solid var(--color-border);
+  font-size: var(--font-size-base);
+  margin-block-start: 0;
+  margin-block-end: var(--space-3);
+  padding-block-end: var(--space-2);
+}
+
+.widget__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.widget__item {
+  border-block-end: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-block: var(--space-2);
+}
+
+.widget__item:last-child {
+  border-block-end: none;
+}
+
+.widget__link {
+  font-size: var(--font-size-sm);
+}
+
+.widget__date {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* ToC widget – style Hugo's generated nested list */
+.widget--toc nav ul {
+  list-style: none;
+  margin: 0;
+  padding-inline-start: var(--space-4);
+}
+
+.widget--toc nav > ul {
+  padding-inline-start: 0;
+}
+
+.widget--toc nav a {
+  display: block;
+  font-size: var(--font-size-sm);
+  padding-block: var(--space-1);
+  text-decoration: none;
+}
+
+.widget--toc nav a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   19. Static page
+   -------------------------------------------------------------------------- */
+.page {
+  max-width: 52rem;
+}
+
+.page-header {
+  border-block-end: 1px solid var(--color-border);
+  margin-block-end: var(--space-6);
+  padding-block-end: var(--space-4);
+}
+
+.page-header h1 {
+  margin-block-start: 0;
+}
+
+.page-description {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+  font-style: italic;
+}
+
+.page-date {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
