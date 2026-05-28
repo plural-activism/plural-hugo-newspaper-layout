@@ -1,0 +1,27 @@
+{{- /* Widget: Other posts in this category.
+       Expects single page context (.).
+       Renders posts sharing the first category of the current page,
+       excluding the current page itself. */ -}}
+{{- $currentPage := . }}
+{{- $categories := .GetTerms "categories" }}
+{{- with index $categories 0 }}
+  {{- $category := . }}
+  {{- $others := where $category.Pages "Permalink" "ne" $currentPage.Permalink }}
+  {{- with $others }}
+    <aside class="widget widget--category-posts" aria-labelledby="category-posts-heading">
+      <h2 id="category-posts-heading" class="widget__title">
+        More in <a href="{{ $category.RelPermalink }}">{{ $category.LinkTitle }}</a>
+      </h2>
+      <ul class="widget__list">
+        {{- range first 5 . }}
+          <li class="widget__item">
+            <a href="{{ .RelPermalink }}" class="widget__link">{{ .LinkTitle }}</a>
+            <span class="widget__date">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+            </span>
+          </li>
+        {{- end }}
+      </ul>
+    </aside>
+  {{- end }}
+{{- end }}

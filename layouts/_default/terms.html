@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <section aria-labelledby="terms-heading">
+    <header class="list-header">
+      <h1 id="terms-heading">{{ .Title }}</h1>
+      {{- with .Content }}
+        <div class="list-description">{{ . }}</div>
+      {{- end }}
+    </header>
+
+    <ul class="terms-list">
+      {{- range .Data.Terms.Alphabetical }}
+        <li class="terms-list__item">
+          <a href="{{ .Page.RelPermalink }}" class="terms-list__link">
+            {{ .Page.LinkTitle }}
+            <span class="terms-list__count" aria-label="{{ .Count }} posts">({{ .Count }})</span>
+          </a>
+        </li>
+      {{- end }}
+    </ul>
+  </section>
+{{ end }}

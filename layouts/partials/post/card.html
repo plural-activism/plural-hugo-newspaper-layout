@@ -1,0 +1,23 @@
+{{- /* Post card: used in list, grid, and masonry views.
+       Expects a page context (.) */ -}}
+<article class="post-card">
+  <h2 class="post-card__title">
+    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+  </h2>
+  {{- with .Description }}
+    <p class="post-card__description">{{ . }}</p>
+  {{- end }}
+  <footer class="post-card__meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+    {{- if and $.Site.Params.posts.showReadingTime .ReadingTime }}
+      <span class="post-card__reading-time">{{ .ReadingTime }} min read</span>
+    {{- end }}
+    {{- if and $.Site.Params.posts.showTags .Params.tags }}
+      <ul class="post-card__tags" aria-label="Tags">
+        {{- range .GetTerms "tags" }}
+          <li><a href="{{ .RelPermalink }}" class="tag">{{ .LinkTitle }}</a></li>
+        {{- end }}
+      </ul>
+    {{- end }}
+  </footer>
+</article>
