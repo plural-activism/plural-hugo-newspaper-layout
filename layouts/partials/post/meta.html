@@ -3,6 +3,8 @@
 <div class="post-meta">
   {{- with .Description }}
     <p class="post-description">{{ . }}</p>
+  {{- else with .Summary }}
+    <p class="post-description">{{ . }}</p>
   {{- end }}
   <dl class="post-details">
     <dt class="visually-hidden">Published</dt>

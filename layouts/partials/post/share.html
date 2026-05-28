@@ -1,8 +1,6 @@
 {{- /* Share links: config-driven, no JavaScript required */ -}}
 {{- if .Site.Params.social.share.enable }}
   {{- $networks := .Site.Params.social.share.networks }}
-  {{- $url := .Permalink | urlize }}
-  {{- $title := .Title | urlize }}
   {{- $encodedURL := .Permalink }}
   {{- $encodedTitle := .Title }}
   <section class="post-share" aria-labelledby="share-heading">
@@ -36,7 +34,7 @@
           </li>
         {{- else if eq . "facebook" }}
           <li>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedURL | urlize }}"
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedURL | urlquery }}"
                rel="noopener noreferrer"
                target="_blank"
                class="share-link share-link--facebook">
