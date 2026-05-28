@@ -1,0 +1,19 @@
+{{- /* Widget: Recent posts.
+       Lists the 5 most recent regular pages across the site. */ -}}
+{{- $posts := where .Site.RegularPages "Type" "posts" }}
+{{- $recent := first 5 ($posts.ByDate.Reverse) }}
+{{- with $recent }}
+  <aside class="widget widget--recent-posts" aria-labelledby="recent-posts-heading">
+    <h2 id="recent-posts-heading" class="widget__title">Recent posts</h2>
+    <ul class="widget__list">
+      {{- range . }}
+        <li class="widget__item">
+          <a href="{{ .RelPermalink }}" class="widget__link">{{ .LinkTitle }}</a>
+          <span class="widget__date">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+          </span>
+        </li>
+      {{- end }}
+    </ul>
+  </aside>
+{{- end }}

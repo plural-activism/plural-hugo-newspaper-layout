@@ -1,20 +1,22 @@
 {{ define "main" }}
-  <article class="post" aria-labelledby="post-title">
-    <header class="post-header">
-      <h1 id="post-title">{{ .Title }}</h1>
-      {{ partial "post/meta.html" . }}
-    </header>
+  <div class="single-layout">
+    <article class="post" aria-labelledby="post-title">
+      <header class="post-header">
+        <h1 id="post-title">{{ .Title }}</h1>
+        {{ partial "post/meta.html" . }}
+      </header>
 
-    <div class="post-content">
-      {{ .Content }}
-    </div>
+      <div class="post-content">
+        {{ .Content }}
+      </div>
 
-    {{ if .Site.Params.posts.showGlossary }}
-      {{ partial "post/glossary.html" . }}
-    {{ end }}
+      {{ if .Site.Params.posts.showGlossary }}
+        {{ partial "post/glossary.html" . }}
+      {{ end }}
 
-    {{ partial "post/share.html" . }}
-  </article>
+      {{ partial "post/share.html" . }}
+    </article>
 
-  {{ partial "widgets/category-posts.html" . }}
+    {{ partial "sidebar.html" . }}
+  </div>
 {{ end }}

@@ -1,0 +1,12 @@
+{{- /* Widget: Table of Contents.
+       Renders Hugo's auto-generated ToC for the current page.
+       Only visible on single pages that have headings. */ -}}
+{{- $toc := .TableOfContents }}
+{{- if strings.Contains $toc "<li>" }}
+  <aside class="widget widget--toc" aria-labelledby="toc-heading">
+    <h2 id="toc-heading" class="widget__title">Contents</h2>
+    <nav aria-labelledby="toc-heading">
+      {{ $toc }}
+    </nav>
+  </aside>
+{{- end }}

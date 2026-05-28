@@ -1,21 +1,25 @@
 {{ define "main" }}
   {{- $layout := .Site.Params.listLayout.default | default "list" }}
-  <section aria-labelledby="taxonomy-heading">
-    <header class="list-header">
-      <h1 id="taxonomy-heading">{{ .Title }}</h1>
-      {{- with .Content }}
-        <div class="list-description">{{ . }}</div>
-      {{- end }}
-    </header>
+  <div class="list-layout">
+    <section aria-labelledby="taxonomy-heading">
+      <header class="list-header">
+        <h1 id="taxonomy-heading">{{ .Title }}</h1>
+        {{- with .Content }}
+          <div class="list-description">{{ . }}</div>
+        {{- end }}
+      </header>
 
-    <ul class="posts-list posts-list--{{ $layout }}" aria-label="Posts">
-      {{- range .Paginator.Pages }}
-        <li class="posts-list__item">
-          {{ partial "post/card.html" . }}
-        </li>
-      {{- end }}
-    </ul>
+      <ul class="posts-list posts-list--{{ $layout }}" aria-label="Posts">
+        {{- range .Paginator.Pages }}
+          <li class="posts-list__item">
+            {{ partial "post/card.html" . }}
+          </li>
+        {{- end }}
+      </ul>
 
-    {{ partial "pagination.html" . }}
-  </section>
+      {{ partial "pagination.html" . }}
+    </section>
+
+    {{ partial "sidebar.html" . }}
+  </div>
 {{ end }}

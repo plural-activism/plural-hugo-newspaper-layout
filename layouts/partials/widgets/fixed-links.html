@@ -1,0 +1,14 @@
+{{- /* Widget: Fixed links.
+       Renders the footer fixed links from params.footer.fixedLinks. */ -}}
+{{- with .Site.Params.footer.fixedLinks }}
+  <aside class="widget widget--fixed-links" aria-labelledby="fixed-links-heading">
+    <h2 id="fixed-links-heading" class="widget__title">Links</h2>
+    <ul class="widget__list">
+      {{- range . }}
+        <li class="widget__item">
+          <a href="{{ .url | safeURL }}" class="widget__link">{{ .name }}</a>
+        </li>
+      {{- end }}
+    </ul>
+  </aside>
+{{- end }}
