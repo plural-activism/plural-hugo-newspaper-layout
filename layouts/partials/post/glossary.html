@@ -1,0 +1,12 @@
+{{- /* Glossary section: renders glossary terms from front matter */ -}}
+{{- with .Params.glossary }}
+  <section class="post-glossary" aria-labelledby="glossary-heading">
+    <h2 id="glossary-heading">Glossary</h2>
+    <dl>
+      {{- range . }}
+        <dt>{{ .term }}</dt>
+        <dd>{{ .definition }}</dd>
+      {{- end }}
+    </dl>
+  </section>
+{{- end }}

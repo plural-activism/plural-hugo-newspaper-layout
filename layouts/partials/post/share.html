@@ -1,0 +1,57 @@
+{{- /* Share links: config-driven, no JavaScript required */ -}}
+{{- if .Site.Params.social.share.enable }}
+  {{- $networks := .Site.Params.social.share.networks }}
+  {{- $encodedURL := .Permalink }}
+  {{- $encodedTitle := .Title }}
+  <section class="post-share" aria-labelledby="share-heading">
+    <h2 id="share-heading">Share this post</h2>
+    <ul class="share-links">
+      {{- range $networks }}
+        {{- if eq . "mastodon" }}
+          <li>
+            <a href="https://mastodon.social/share?text={{ $encodedTitle | urlize }}%20{{ $encodedURL | urlize }}"
+               rel="noopener noreferrer"
+               target="_blank"
+               class="share-link share-link--mastodon">
+              Share on Mastodon
+            </a>
+          </li>
+        {{- else if eq . "email" }}
+          <li>
+            <a href="mailto:?subject={{ $encodedTitle | urlize }}&amp;body={{ $encodedURL | urlize }}"
+               class="share-link share-link--email">
+              Share via Email
+            </a>
+          </li>
+        {{- else if eq . "x" }}
+          <li>
+            <a href="https://x.com/intent/tweet?text={{ $encodedTitle | urlize }}&amp;url={{ $encodedURL | urlize }}"
+               rel="noopener noreferrer"
+               target="_blank"
+               class="share-link share-link--x">
+              Share on X
+            </a>
+          </li>
+        {{- else if eq . "facebook" }}
+          <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedURL | urlquery }}"
+               rel="noopener noreferrer"
+               target="_blank"
+               class="share-link share-link--facebook">
+              Share on Facebook
+            </a>
+          </li>
+        {{- else if eq . "linkedin" }}
+          <li>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $encodedURL | urlize }}"
+               rel="noopener noreferrer"
+               target="_blank"
+               class="share-link share-link--linkedin">
+              Share on LinkedIn
+            </a>
+          </li>
+        {{- end }}
+      {{- end }}
+    </ul>
+  </section>
+{{- end }}
