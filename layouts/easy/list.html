@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <section class="easy-list" aria-labelledby="easy-list-heading">
+    <header class="easy-list__header">
+      {{ partial "easy-badge.html" . }}
+      <h1 id="easy-list-heading">{{ .Title }}</h1>
+      {{- with .Content }}
+        <div class="easy-list__description">{{ . }}</div>
+      {{- end }}
+    </header>
+
+    <ul class="easy-list__items" aria-label="Easy language posts">
+      {{- range .Paginator.Pages }}
+        <li class="easy-list__item">
+          <article class="easy-card" aria-labelledby="easy-card-{{ .File.UniqueID }}">
+            <h2 id="easy-card-{{ .File.UniqueID }}" class="easy-card__title">
+              <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            </h2>
+            {{- with .Description }}
+              <p class="easy-card__description">{{ . }}</p>
+            {{- end }}
+            <p class="easy-card__date">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+            </p>
+          </article>
+        </li>
+      {{- end }}
+    </ul>
+
+    {{ partial "pagination.html" . }}
+  </section>
+{{ end }}
