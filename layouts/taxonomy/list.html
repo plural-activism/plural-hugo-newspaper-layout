@@ -1,8 +1,8 @@
 {{ define "main" }}
   {{- $layout := .Site.Params.listLayout.default | default "list" }}
-  <section aria-labelledby="list-heading">
+  <section aria-labelledby="taxonomy-heading">
     <header class="list-header">
-      <h1 id="list-heading">{{ .Title }}</h1>
+      <h1 id="taxonomy-heading">{{ .Title }}</h1>
       {{- with .Content }}
         <div class="list-description">{{ . }}</div>
       {{- end }}
