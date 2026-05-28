@@ -1,7 +1,8 @@
 {{- $schemeParam := .Site.Params.colorScheme.default | default "auto" -}}
 {{- $dataScheme := "" -}}
-{{- if eq $schemeParam "dark" }}{{ $dataScheme = "dark" }}{{ end -}}
-{{- if and (.Site.Params.colorScheme.enableHighContrast) (eq $schemeParam "high-contrast") }}{{ $dataScheme = "high-contrast" }}{{ end -}}
+{{- if eq $schemeParam "light" -}}{{- $dataScheme = "light" -}}{{- end -}}
+{{- if eq $schemeParam "dark" -}}{{- $dataScheme = "dark" -}}{{- end -}}
+{{- if and (.Site.Params.colorScheme.enableHighContrast) (eq $schemeParam "high-contrast") -}}{{- $dataScheme = "high-contrast" -}}{{- end -}}
 {{- $css := resources.Get "css/main.css" | minify | fingerprint -}}
 <!doctype html>
 <html lang="{{ .Site.Language.LanguageCode | default .Site.LanguageCode | default `en` }}"
